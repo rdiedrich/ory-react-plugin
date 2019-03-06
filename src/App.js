@@ -11,6 +11,8 @@ import 'ory-editor-core/lib/index.css' // we also want to load the stylesheets
 import { Trash, DisplayModeToggle, Toolbar } from 'ory-editor-ui'
 import 'ory-editor-ui/lib/index.css'
 
+
+import dummy from './ory-editor-plugins-dummy' // The rich text area plugin
 // Load some exemplary plugins:
 import slate from 'ory-editor-plugins-slate' // The rich text area plugin
 import 'ory-editor-plugins-slate/lib/index.css' // Stylesheets for the rich text area plugin
@@ -20,7 +22,7 @@ import 'ory-editor-plugins-parallax-background/lib/index.css' // Stylesheets for
 
 // Define which plugins we want to use. We only have slate and parallax available, so load those.
 const plugins = {
-  content: [slate()], // Define plugins for content cells. To import multiple plugins, use [slate(), image, spacer, divider]
+  content: [slate(), dummy], // Define plugins for content cells. To import multiple plugins, use [slate(), image, spacer, divider]
   layout: [parallax({ defaultPlugin: slate() })] // Define plugins for layout cells
 }
 
@@ -32,6 +34,7 @@ const content = createEmptyState()
 // Instantiate the editor
 const editor = new Editor({
   plugins,
+  defaultPlugin: slate(),
   // pass the content state - you can add multiple editables here
   editables: [content],
 })
